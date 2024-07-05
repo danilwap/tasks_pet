@@ -19,10 +19,10 @@ class TaskRepository:
 
 
     @classmethod
-    async def get_all(self) -> list[STask]:
+    async def get_all(cls) -> list[STask]:
         async with (async_sessionmaker() as session):
             query = select(TaskOrm)
-            res = await session.execute(query)
-            task_model = res.scalars().all()
-            tasks = [STask.model_validate(task) for task in task_model]
+            result = await session.execute(query)
+            task_models = result.scalars().all()
+            tasks = [STask.model_validate(task_model) for task_model in task_models]
             return tasks

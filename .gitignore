@@ -1,2 +1,3 @@
 venv
 src/tasks.db
+src/tasks_app/__pycache__
